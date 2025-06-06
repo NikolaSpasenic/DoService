@@ -27,7 +27,6 @@ public class Location {
 	
 	
 	public Location() {
-		super();
 	}
 
 
@@ -35,7 +34,6 @@ public class Location {
 
 
 	public Location(int id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.createdAt = createdAt;

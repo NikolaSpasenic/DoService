@@ -39,7 +39,6 @@ public class TaskController {
 		return "tasks";
 	}
 	
-	//KONTROLA
 	
 	@GetMapping("/add")
 	public String getTasksFormPage(Model model) {
