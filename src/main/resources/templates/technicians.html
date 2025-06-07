@@ -72,32 +72,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <tr>
                       <th style="width: 10%">#</th>
                       <th style="width: 30%;">First Name</th>
+                      <th class="text-center">Last Name</th>
                       <th class="text-center">Status</th>
                       <th class="text-center">Specialization</th>
-                      <th class="text-center">Location</th>
 					  <th class="text-cetner">Actions</th>
                     </tr>
                   </thead>
                   <tbody id="sort-list">
 					
 					
-                    <tr th:each="task : ${technicians}">
+                    <tr th:each="technician : ${technicians}">
                       <td th:text="${technician.id}">
                       </td>
-                      <td>
-                        <strong th:text="${technician.serviceType}"></strong>
-                      </td>
                       <td class="text-center" th:text="${technician.firstName}"></td>
+                      <td class="text-center" th:text="${technician.lastName}"></td>
                       <td class="text-center" th:text="${technician.status}"></td>
-					  <td class="text-center" th:text="${technician.specialization}"></td>
+                      <td class="text-center" th:text="${technician.specialization?.name}"></td>
 
-					  
                       <td class="text-center">
                         <div class="btn-group">
-                          <a th:href="@{/technicians/update/{id}(id=${task.id})}" class="btn btn-info">
+                          <a th:href="@{/technicians/update/{id}(id=${technician.id})}" class="btn btn-info">
                             <i class="fas fa-edit"></i>
                           </a>
-						  <a th:href="@{/technicians/delete/{id}(id=${task.id})}" class="btn btn-info">
+						  <a th:href="@{/technicians/delete/{id}(id=${technician.id})}" class="btn btn-info">
 						     <i class="fas fa-trash"></i>
 						  </a>
                           <!--button type="button" class="btn btn-info" data-toggle="modal" data-target="#delete-modal">

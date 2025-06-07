@@ -33,13 +33,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Technician Form</h1>
+            <h1>Tasks Form</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Technicians</a></li>
-              <li class="breadcrumb-item active">Technicians Form</li>
+              <li class="breadcrumb-item"><a href="#">Tasks</a></li>
+              <li class="breadcrumb-item active">Tasks Form</li>
             </ol>
           </div>
         </div>
@@ -53,32 +53,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="col-md-6">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Technicians Form</h3>
+                <h3 class="card-title">Tasks Form</h3>
               </div>
               <!-- /.card-header -->	
               <!-- form start -->
-              <form role="form" th:action="@{/technicians/save}" th:object="${technician}" method="post">
+              <form role="form" th:action="@{/tasks/save}" th:object="${task}" method="post">
                 <div class="card-body">
 					<input type="hidden"  th:field="*{id}" >
-                  	<div class="form-group">
-	                    <label>First Name</label>
-	                    <input type="text" th:field="*{firstName}" class="form-control" placeholder="Enter first name">
-	                 	<span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" th:field="*{description}" class="form-control" placeholder="Enter task description">
+                        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select th:field="*{serviceType}" class="form-control" required>
+                            <option th:each="type : ${serviceTypes}" th:value="${type}" th:text="${type}">
+                            </option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('serviceType')}" th:errors="*{serviceType}" class="text-danger"></span>
+                    </div>
+					<div class="form-group">
+	                    <label>Client Name</label>
+	                    <input type="text" th:field="*{clientName}" class="form-control" placeholder="Enter Client name">
+	                 	<span th:if="${#fields.hasErrors('clientName')}" th:errors="*{clientName}" class="text-danger"></span>
 					</div>
 					<div class="form-group">
-	                    <label>Last Name</label>
-	                    <input type="text" th:field="*{lastName}" class="form-control" placeholder="Enter last name">
-	                 	<span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
+	                    <label>Client Contact</label>
+	                    <input type="text" th:field="*{clientContact}" class="form-control" placeholder="Enter Client contact">
+	                 	<span th:if="${#fields.hasErrors('clientContact')}" th:errors="*{clientContact}" class="text-danger"></span>
 					</div>
 					<div class="form-group">
-	                    <label>Email</label>
-	                    <input type="text" th:field="*{email}" class="form-control" placeholder="Enter email">
-	                 	<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-					</div>
-					<div class="form-group">
-		                <label>Phone</label>
-		                <input type="text" th:field="*{phone}" class="form-control" placeholder="Enter phone">
-		             	<span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger"></span>
+		                <label>Client Address</label>
+		                <input type="text" th:field="*{clientAddress}" class="form-control" placeholder="Enter Client address">
+		             	<span th:if="${#fields.hasErrors('clientAddress')}" th:errors="*{clientAddress}" class="text-danger"></span>
 					</div>
 					<div class="form-group">
 		                <label>Status</label>
@@ -89,15 +97,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <span th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="text-danger"></span>
 					</div>
 					<div class="form-group">
-		                <label>Specialization</label>
-						<select th:field="*{specialization}" class="form-control" multiple>
-							<option th:each="spec : ${specializations}" th:value="${spec.id}" th:text="${spec.name}">
+		                <label>Technicians</label>
+						<select th:field="*{technicians}" class="form-control" multiple>
+							<option th:each="tech : ${technicians}" th:value="${tech.id}" th:text="${tech.firstName + ' ' + tech.lastName}">
 							</option>
 						</select>
-                        <span th:if="${#fields.hasErrors('specialization')}" th:errors="*{specialization}" class="text-danger"></span>
+                        <span th:if="${#fields.hasErrors('technicians')}" th:errors="*{technicians}" class="text-danger"></span>
 					</div>
-					
-		
                 </div>
                 <!-- /.card-body -->
 

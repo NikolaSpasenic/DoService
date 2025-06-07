@@ -1,5 +1,6 @@
 package rs.edu.cubes.doservice.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,6 +22,11 @@ public class LocationService {
 	}
 	
 	public Location saveLocation(Location location) {
+		if (location.getCreatedAt() == null)
+			location.setCreatedAt(LocalDateTime.now());
+
+		location.setUpdatedAt(LocalDateTime.now());
+
 		return repository.save(location);
 	}
 	
@@ -28,8 +34,8 @@ public class LocationService {
 		return repository.getById(id);
 	}
 	
-	public void deleteLocation(Location location) {
-		repository.delete(location);
+	public void deleteLocation(int locationId) {
+		repository.deleteById(locationId);
 	}
 	
 	

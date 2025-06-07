@@ -30,8 +30,8 @@ public class TechnicianService {
 		return repository.getById(id);
 	}
 	
-	public void deleteTechnician(Technician technician) {
-		repository.delete(technician);
+	public void deleteTechnician(int technicianId) {
+		repository.deleteById(technicianId);
 	}
 	
 	

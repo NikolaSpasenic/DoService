@@ -1,5 +1,6 @@
 package rs.edu.cubes.doservice.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,6 +22,11 @@ public class TechnicianSpecializationService {
 	}
 	
 	public TechnicianSpecialization saveTechnicianSpecialization(TechnicianSpecialization technicianSpecialization) {
+		if (technicianSpecialization.getCreatedAt() == null)
+			technicianSpecialization.setCreatedAt(LocalDateTime.now());
+
+		technicianSpecialization.setUpdatedAt(LocalDateTime.now());
+
 		return repository.save(technicianSpecialization);
 	}
 	
@@ -28,8 +34,8 @@ public class TechnicianSpecializationService {
 		return repository.getById(id);
 	}
 	
-	public void  deleteTechnicianSpecialization(TechnicianSpecialization technicianSpecialization) {
-		repository.delete(technicianSpecialization);
+	public void  deleteTechnicianSpecialization(int specializationId) {
+		repository.deleteById(specializationId);
 	}
 	
 	

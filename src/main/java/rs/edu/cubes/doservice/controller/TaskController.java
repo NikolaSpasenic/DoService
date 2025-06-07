@@ -12,20 +12,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.validation.Valid;
 
+import rs.edu.cubes.doservice.model.ServiceType;
 import rs.edu.cubes.doservice.model.Task;
+import rs.edu.cubes.doservice.model.TaskStatus;
 import rs.edu.cubes.doservice.service.TaskService;
+import rs.edu.cubes.doservice.service.TechnicianService;
 
 @Controller
 @RequestMapping("/tasks")
 public class TaskController {
 	
 	
-	private TaskService service;
+	private TaskService taskService;
+	private TechnicianService technicianService;
 	
 	
 	
-	public TaskController(TaskService service) {
-		this.service = service;
+	public TaskController(TaskService taskService, TechnicianService technicianService) {
+
+		this.taskService = taskService;
+		this.technicianService = technicianService;
 	}
 
 
@@ -33,9 +39,8 @@ public class TaskController {
 	@GetMapping
 	public String getTasksPage(Model model) {
 		
-		model.addAttribute("tasks", service.getAllTasks());
-		
-		
+		model.addAttribute("tasks", taskService.getAllTasks());
+
 		return "tasks";
 	}
 	
@@ -44,6 +49,9 @@ public class TaskController {
 	public String getTasksFormPage(Model model) {
 		
 		model.addAttribute("task", new Task());
+		model.addAttribute("technicians", technicianService.getAllTechnicians());
+		model.addAttribute("serviceTypes", ServiceType.values());
+		model.addAttribute("statuses", TaskStatus.values());
 		
 		return "tasks-form";
 	}
@@ -51,8 +59,10 @@ public class TaskController {
 	@GetMapping("/update/{id}")
 	public String getTasksUpdateFormPage(@PathVariable int id, Model model) {
 		
-		model.addAttribute("task", service.getTask(id));
-		
+		model.addAttribute("task", taskService.getTask(id));
+		model.addAttribute("technicians", technicianService.getAllTechnicians());
+		model.addAttribute("serviceTypes", ServiceType.values());
+		model.addAttribute("statuses", TaskStatus.values());
 		
 		return "tasks-form";
 	}
@@ -64,15 +74,15 @@ public class TaskController {
 			return "tasks-form";
 		}
 		
-		service.saveTask(task);
+		taskService.saveTask(task);
 		
 		return "redirect:/tasks";
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String getDeleteTask(Task task) {
+	public String getDeleteTask(@PathVariable int id) {
 		
-		service.deleteTask(task);
+		taskService.deleteTask(id);
 		
 		return "redirect:/tasks";
 	}

@@ -13,8 +13,10 @@ import jakarta.validation.Valid;
 import rs.edu.cubes.doservice.model.Location;
 import rs.edu.cubes.doservice.service.LocationService;
 
+import java.time.LocalDateTime;
+
 @Controller
-@RequestMapping("/location")
+@RequestMapping("/locations")
 public class LocationController {
 	
 	
@@ -36,7 +38,7 @@ public class LocationController {
 	
 	@GetMapping("/add")
 	public String getLocationssFormPage(Model model) {
-		
+
 		model.addAttribute("location", new Location());
 		
 		return "locations-form";
@@ -45,8 +47,7 @@ public class LocationController {
 	@GetMapping("/update/{id}")
 	public String getLocationsUpdateFormPage(@PathVariable int id, Model model) {
 		
-		model.addAttribute("locations", service.getLocation(id));
-		
+		model.addAttribute("location", service.getLocation(id));
 		
 		return "locations-form";
 	}
@@ -57,21 +58,17 @@ public class LocationController {
 		if(result.hasErrors()) {
 			return "locations-form";
 		}
-		
+
 		service.saveLocation(location);
-	
-		
+
 		return "redirect:/locations";
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String getDeleteLocation(Location location) {
+	public String getDeleteLocation(@PathVariable int id) {
 		
-		service.deleteLocation(location);
+		service.deleteLocation(id);
 		
 		return "redirect:/locations";
 	}
-	
-	
-	
 }

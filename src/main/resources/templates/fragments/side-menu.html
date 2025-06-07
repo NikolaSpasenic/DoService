@@ -20,21 +20,21 @@
 			               <a href="#" class="nav-link">
 			                 <i class="nav-icon far fa-plus-square"></i>
 			                 <p>
-			                   Products
+			                   Tasks
 			                   <i class="right fas fa-angle-left"></i>
 			                 </p>
 			               </a>
 			               <ul class="nav nav-treeview">
 			                 <li class="nav-item">
-			                   <a th:href="@{/products}" class="nav-link">
+			                   <a th:href="@{/tasks}" class="nav-link">
 			                     <i class="far fa-circle nav-icon"></i>
-			                     <p>Products list</p>
+			                     <p>Task list</p>
 			                   </a>
 			                 </li>
 			                 <li class="nav-item">
-			                   <a th:href="@{/products/add}" class="nav-link">
+			                   <a th:href="@{/tasks/add}" class="nav-link">
 			                     <i class="far fa-circle nav-icon"></i>
-			                     <p>Add Product</p>
+			                     <p>Add Task</p>
 			                   </a>
 			                 </li>
 			               </ul>
@@ -46,51 +46,73 @@
             <a href="#" class="nav-link">
               <i class="nav-icon far fa-plus-square"></i>
               <p>
-                Categories
+                Technicians
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a th:href="@{/categories}" class="nav-link">
+                <a th:href="@{/technicians}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Categories list</p>
+                  <p>Technician list</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a th:href="@{/categories/add}" class="nav-link">
+                <a th:href="@{/technicians/add}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Category</p>
+                  <p>Add Technician</p>
                 </a>
               </li>
             </ul>
           </li>
-		  
-		  
-		  
-		  <li class="nav-item has-treeview">
-		              <a href="#" class="nav-link">
-		                <i class="nav-icon far fa-plus-square"></i>
-		                <p>
-		                  Brands
-		                  <i class="right fas fa-angle-left"></i>
-		                </p>
-		              </a>
-		              <ul class="nav nav-treeview">
-		                <li class="nav-item">
-		                  <a th:href="@{/brands}" class="nav-link">
-		                    <i class="far fa-circle nav-icon"></i>
-		                    <p>Brands list</p>
-		                  </a>
-		                </li>
-		                <li class="nav-item">
-		                  <a th:href="@{/brands/add}" class="nav-link">
-		                    <i class="far fa-circle nav-icon"></i>
-		                    <p>Add Brand</p>
-		                  </a>
-		                </li>
-		              </ul>
-		            </li>
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-plus-square"></i>
+                    <p>
+                        Locations
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a th:href="@{/locations}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Location list</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/locations/add}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add Location</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-plus-square"></i>
+                    <p>
+                        Technician Specializations
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a th:href="@{/specializations}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Technician Specialization list</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/specializations/add}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Add Technician Specialization</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

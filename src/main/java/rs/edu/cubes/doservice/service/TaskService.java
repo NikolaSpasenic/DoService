@@ -1,5 +1,6 @@
 package rs.edu.cubes.doservice.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -24,6 +25,11 @@ public class TaskService {
 	
 	
 	public Task saveTask(Task task) {
+		if (task.getCreatedAt() == null)
+			task.setCreatedAt(LocalDateTime.now());
+
+		task.setUpdatedAt(LocalDateTime.now());
+
 		return repository.save(task);
 	}
 	
@@ -31,8 +37,8 @@ public class TaskService {
 		return repository.getById(id);
 	}
 	
-	public void deleteTask(Task task) {
-		repository.delete(task);
+	public void deleteTask(int taskId) {
+		repository.deleteById(taskId);
 	}
 	
 	

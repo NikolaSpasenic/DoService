@@ -1,6 +1,7 @@
 package rs.edu.cubes.doservice.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -26,6 +27,8 @@ public class Task {
 	private LocalDate assignedDate;
 	private LocalDate completionDate;
 	private String description;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 	
 	
 	
@@ -190,9 +193,33 @@ public class Task {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
+
+
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+
+
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
+
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+
+
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 	
 	
 

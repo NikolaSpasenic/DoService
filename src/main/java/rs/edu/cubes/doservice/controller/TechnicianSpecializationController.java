@@ -14,7 +14,7 @@ import rs.edu.cubes.doservice.model.TechnicianSpecialization;
 import rs.edu.cubes.doservice.service.TechnicianSpecializationService;
 
 @Controller
-@RequestMapping("/technician-specialization")
+@RequestMapping("/specializations")
 public class TechnicianSpecializationController {
 	
 	
@@ -28,7 +28,7 @@ public class TechnicianSpecializationController {
 	@GetMapping
 	public String getTechnicianSpecializationsPage(Model model) {
 		
-		model.addAttribute("technician specialization", service.getAllTechnicianSpecializations());
+		model.addAttribute("specializations", service.getAllTechnicianSpecializations());
 		
 		
 		return "technician-specializations";
@@ -37,7 +37,7 @@ public class TechnicianSpecializationController {
 	@GetMapping("/add")
 	public String getTechniciansSpecializationsFormPage(Model model) {
 		
-		model.addAttribute("technician specialization", new TechnicianSpecialization());
+		model.addAttribute("specialization", new TechnicianSpecialization());
 		
 		return "technician-specializations-form";
 	}
@@ -46,7 +46,7 @@ public class TechnicianSpecializationController {
 	@GetMapping("/update/{id}")
 	public String getTechnicianSpecializationsUpdateFormPage(@PathVariable int id, Model model) {
 		
-		model.addAttribute("technician specialization", service.getTechnicianSpecialization(id));
+		model.addAttribute("specialization", service.getTechnicianSpecialization(id));
 		
 		
 		return "technician-specializations-form";
@@ -61,15 +61,15 @@ public class TechnicianSpecializationController {
 		
 		service.saveTechnicianSpecialization(technicianSpecialization);
 		
-		return "redirect:/technician-specializations";
+		return "redirect:/specializations";
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String getDeleteTechnicianSpecialization(TechnicianSpecialization technicianSpecialization) {
+	public String getDeleteTechnicianSpecialization(@PathVariable int id) {
 		
-		service.deleteTechnicianSpecialization(technicianSpecialization);
+		service.deleteTechnicianSpecialization(id);
 		
-		return "redirect:/technician-specializations";
+		return "redirect:/specializations";
 	}
 	
 	

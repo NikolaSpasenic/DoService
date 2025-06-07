@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
-import rs.edu.cubes.doservice.model.ServiceType;
-import rs.edu.cubes.doservice.model.Task;
-import rs.edu.cubes.doservice.model.TaskStatus;
-import rs.edu.cubes.doservice.model.Technician;
-import rs.edu.cubes.doservice.model.TechnicianSpecialization;
+import rs.edu.cubes.doservice.model.*;
 import rs.edu.cubes.doservice.service.TechnicianService;
+import rs.edu.cubes.doservice.service.TechnicianSpecializationService;
 
 @Controller
 @RequestMapping("/technicians")
@@ -27,9 +24,11 @@ public class TechnicianController {
 	
 	
 	private TechnicianService techinicanService;
+	private TechnicianSpecializationService technicianSpecializationService;
 
-	public TechnicianController(TechnicianService techinicanService) {
+	public TechnicianController(TechnicianService techinicanService, TechnicianSpecializationService technicianSpecializationService) {
 		this.techinicanService = techinicanService;
+		this.technicianSpecializationService = technicianSpecializationService;
 	}
 	
 	
@@ -47,11 +46,11 @@ public class TechnicianController {
 	public String getTechniciansFormPage(Model model) {
 		
 		//PROMENI
-		TechnicianSpecialization specialization = new TechnicianSpecialization(1, "specijalizacija", LocalDateTime.now(), LocalDateTime.now());
+		TechnicianSpecialization specialization = new TechnicianSpecialization(1, "First", LocalDateTime.now(), null);
 		
 		model.addAttribute("technician", new Technician());
-		model.addAttribute("statuses", List.of("Active", "Inactive"));
-		model.addAttribute("specializations", List.of(specialization));
+		model.addAttribute("statuses", TechnicianStatus.values());
+		model.addAttribute("specializations", technicianSpecializationService.getAllTechnicianSpecializations());
 		
 		return "technicians-form";
 	}
@@ -61,7 +60,8 @@ public class TechnicianController {
 	public String getTechniciansUpdateFormPage(@PathVariable int id, Model model) {
 		
 		model.addAttribute("technician", techinicanService.getTechnician(id));
-		
+		model.addAttribute("statuses", TechnicianStatus.values());
+		model.addAttribute("specializations", technicianSpecializationService.getAllTechnicianSpecializations());
 		
 		return "technicians-form";
 	}
@@ -79,9 +79,9 @@ public class TechnicianController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String getDeleteTechnician(Technician technician) {
+	public String getDeleteTechnician(@PathVariable int id) {
 		
-		techinicanService.deleteTechnician(technician);
+		techinicanService.deleteTechnician(id);
 		
 		return "redirect:/technicians";
 	}

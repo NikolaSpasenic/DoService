@@ -59,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="card-header">
                 <h3 class="card-title">All Technician Specializations</h3>
                 <div class="card-tools">
-                  <a th:href="@{/location/add}" class="btn btn-success">
+                  <a th:href="@{/specializations/add}" class="btn btn-success">
                     <i class="fas fa-plus-square"></i>
                     Add new Technician Specialization
                   </a>
@@ -81,23 +81,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <tbody id="sort-list">
 					
 					
-                    <tr th:each="task : ${technician-specialization}">
-                      <td th:text="${technician-specialization.id}">
-                      </td>
-                      <td>
-                        <strong th:text="${technician-specialization.serviceType}"></strong>
-                      </td>
-                      <td class="text-center" th:text="${technician-specialization.name}"></td>
-                      <td class="text-center" th:text="${technician-specialization.createdAt}"></td>
-					  <td class="text-center" th:text="${technician-specialization.updatedAt}"></td>
+                    <tr th:each="specialization : ${specializations}">
+                      <td th:text="${specialization.id}"></td>
+                      <td th:text="${specialization.name}"></td>
+                      <td class="text-center" th:text="${specialization.createdAt}"></td>
+					  <td class="text-center" th:text="${specialization.updatedAt}"></td>
 
 					  
                       <td class="text-center">
                         <div class="btn-group">
-                          <a th:href="@{/technician-specializations/update/{id}(id=${technician-specialization.id})}" class="btn btn-info">
+                          <a th:href="@{/specializations/update/{id}(id=${specialization.id})}" class="btn btn-info">
                             <i class="fas fa-edit"></i>
                           </a>
-						  <a th:href="@{/technician-specializations/delete/{id}(id=${technician-specialization.id})}" class="btn btn-info">
+						  <a th:href="@{/specializations/delete/{id}(id=${specialization.id})}" class="btn btn-info">
 						     <i class="fas fa-trash"></i>
 						  </a>
                           <!--button type="button" class="btn btn-info" data-toggle="modal" data-target="#delete-modal">
