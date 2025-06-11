@@ -4,7 +4,7 @@
     <a th:href="@{/index}" class="brand-link">
       <img th:src="@{/dist/img/AdminLTELogo.png}" alt="Cubes School Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Cubes School</span>
+      <span class="brand-text font-weight-light">DoService</span>
     </a>
 
     <!-- Sidebar -->
@@ -113,6 +113,31 @@
                     </li>
                 </ul>
             </li>
+			
+			<li class="nav-item has-treeview">
+			               <a href="#" class="nav-link">
+			                   <i class="nav-icon far fa-plus-square"></i>
+			                   <p>
+			                       Employees
+			                       <i class="right fas fa-angle-left"></i>
+			                   </p>
+			               </a>
+			               <ul class="nav nav-treeview">
+			                   <li class="nav-item">
+			                       <a th:href="@{/employees}" class="nav-link">
+			                           <i class="far fa-circle nav-icon"></i>
+			                           <p>Employee list</p>
+			                       </a>
+			                   </li>
+			                   <li class="nav-item">
+			                       <a th:href="@{/employees/add}" class="nav-link">
+			                           <i class="far fa-circle nav-icon"></i>
+			                           <p>Add Employee</p>
+			                       </a>
+			                   </li>
+			               </ul>
+			           </li>
+			
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

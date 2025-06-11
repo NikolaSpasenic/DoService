@@ -9,51 +9,50 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-
+import jakarta.persistence.OneToMany;
 
 @Entity
-public class Technician extends Employee{
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Employee {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected int id;
+	protected String firstName;
+	protected String lastName;
+	protected String email;
+	protected String phone;
+	protected LocalDateTime employmentDate;
+	protected LocalDateTime createdAt;
+	protected LocalDateTime updatedAt;
+	@OneToMany(mappedBy="employee")
+	protected Set<Contract> contracts;
 	
 	
-	private TechnicianStatus status;
-	@ManyToOne
-	private TechnicianSpecialization specialization;
-	@ManyToOne
-	private Location location;
-	
-	@ManyToMany
-	private Set<Task> tasks;
 	
 	
 	
 	
-	
-	public Technician() {
+	public Employee() {
 		super();
 	}
 
 
 
-
-	public Technician(int id, String firstName, String lastName, String email, String phone, TechnicianStatus status,
-			TechnicianSpecialization specialization, Location location, LocalDateTime employmentDate,
-			LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Employee(int id, String firstName, String lastName, String email, String phone, LocalDateTime employmentDate,
+			LocalDateTime createdAt, LocalDateTime updatedAt, Set<Contract> contracts) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phone = phone;
-		this.status = status;
-		this.specialization = specialization;
-		this.location = location;
 		this.employmentDate = employmentDate;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.contracts = contracts;
 	}
-
 
 
 
@@ -63,11 +62,9 @@ public class Technician extends Employee{
 
 
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 
 
@@ -77,11 +74,9 @@ public class Technician extends Employee{
 
 
 
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 
 
 
@@ -91,11 +86,9 @@ public class Technician extends Employee{
 
 
 
-
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
 
 
 
@@ -105,11 +98,9 @@ public class Technician extends Employee{
 
 
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 
 
@@ -119,53 +110,9 @@ public class Technician extends Employee{
 
 
 
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-
-
-
-	public TechnicianStatus getStatus() {
-		return status;
-	}
-
-
-
-
-	public void setStatus(TechnicianStatus status) {
-		this.status = status;
-	}
-
-
-
-
-	public TechnicianSpecialization getSpecialization() {
-		return specialization;
-	}
-
-
-
-
-	public void setSpecialization(TechnicianSpecialization specialization) {
-		this.specialization = specialization;
-	}
-
-
-
-
-	public Location getLocation() {
-		return location;
-	}
-
-
-
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-
 
 
 
@@ -175,11 +122,9 @@ public class Technician extends Employee{
 
 
 
-
 	public void setEmploymentDate(LocalDateTime employmentDate) {
 		this.employmentDate = employmentDate;
 	}
-
 
 
 
@@ -189,11 +134,9 @@ public class Technician extends Employee{
 
 
 
-
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
-
 
 
 
@@ -203,24 +146,26 @@ public class Technician extends Employee{
 
 
 
-
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
 
 
-
-	public Set<Task> getTasks() {
-		return tasks;
+	public Set<Contract> getContracts() {
+		return contracts;
 	}
 
 
 
-
-	public void setTasks(Set<Task> tasks) {
-		this.tasks = tasks;
+	public void setContracts(Set<Contract> contracts) {
+		this.contracts = contracts;
 	}
+	
+	
+	
+	
+	
 	
 	
 	

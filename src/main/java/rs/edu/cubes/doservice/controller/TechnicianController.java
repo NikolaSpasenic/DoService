@@ -45,8 +45,7 @@ public class TechnicianController {
 	@GetMapping("/add")
 	public String getTechniciansFormPage(Model model) {
 		
-		//PROMENI
-		TechnicianSpecialization specialization = new TechnicianSpecialization(1, "First", LocalDateTime.now(), null);
+		
 		
 		model.addAttribute("technician", new Technician());
 		model.addAttribute("statuses", TechnicianStatus.values());
