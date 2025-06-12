@@ -1,5 +1,6 @@
 package rs.edu.cubes.doservice.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -24,6 +25,11 @@ public class EmployeeService {
 	}
 	
 	public Employee saveEmployee(Employee employee) {
+		if (employee.getCreatedAt() == null)
+			employee.setCreatedAt(LocalDateTime.now());
+
+		employee.setUpdatedAt(LocalDateTime.now());
+
 		return repository.save(employee);
 	}
 	

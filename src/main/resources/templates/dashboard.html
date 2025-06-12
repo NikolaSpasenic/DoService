@@ -44,40 +44,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				            <!-- small box -->
 				            <div class="small-box bg-info">
 				              <div class="inner">
-				                <h3 th:text="${countTasks}"></h3>
+				                <h3 th:text="${doneTasks}"></h3>
 
 				                <p>Done tasks</p>
 				              </div>
 				              <div class="icon">
 				                <i class="ion ion-bag"></i>
 				              </div>
-				              <a th:href="@{/tasks}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+				              <a href="/tasks?status=completed" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 				            </div>
 							
 							
 							<!-- small box -->
 							<div class="small-box bg-info">
 								<div class="inner">
-								<h3 th:text="${countTasks}"></h3>
+								<h3 th:text="${inProgressTasks}"></h3>
 
 								<p>Tasks in progress</p>
 								</div>
 								<div class="icon">
 								 <i class="ion ion-bag"></i>
 								</div>
-								<a th:href="@{/tasks}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+								<a href="/tasks?status=in_progress" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 							</div>
 							
 							<div class="small-box bg-info">
 								<div class="inner">
-								<h3 th:text="${countTasks}"></h3>
+								<h3 th:text="${waitingTasks}"></h3>
 
 								<p>Waiting tasks</p>
 								</div>
 								<div class="icon">
 								 <i class="ion ion-bag"></i>
 								</div>
-								<a th:href="@{/tasks}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+								<a href="/tasks?status=pending" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 							</div>
 				</div>
 				

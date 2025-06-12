@@ -86,18 +86,7 @@ public class ContractController {
 		
 		service.saveContract(contract);
 		
-		return "redirect:/contracts";
+		return "redirect:/contracts/" + employeeId;
 	}
-	
-	@GetMapping("/delete/{id}")
-	public String getDeleteContract(@PathVariable int id) {
-		
-		service.deleteContract(id);
-		
-		return "redirect:/contracts";
-	}
-	
-	
-	
 
 }

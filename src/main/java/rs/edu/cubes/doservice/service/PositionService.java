@@ -1,5 +1,6 @@
 package rs.edu.cubes.doservice.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +23,11 @@ public class PositionService {
 	}
 	
 	public Position savePosition(Position position) {
+		if (position.getCreatedAt() == null)
+			position.setCreatedAt(LocalDateTime.now());
+
+		position.setUpdatedAt(LocalDateTime.now());
+
 		return repository.save(position);
 	}
 	

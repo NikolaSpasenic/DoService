@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import rs.edu.cubes.doservice.model.Task;
+import rs.edu.cubes.doservice.model.TaskStatus;
 
 
 @Service
@@ -44,7 +45,10 @@ public class TaskService {
 	public long countTasks() {
 		return repository.count();
 	}
-	
+
+	public List<Task> getTasksByStatus(TaskStatus status) {
+		return repository.getTasksByStatus(status);
+	}
 	
 	
 	

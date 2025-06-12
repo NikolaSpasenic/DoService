@@ -31,7 +31,7 @@ public class PositionController {
 		model.addAttribute("positions", service.getAllPositions());
 		
 		
-		return "postions";
+		return "positions";
 	}
 	
 	
@@ -40,7 +40,7 @@ public class PositionController {
 		
 		
 		
-		model.addAttribute("position", service.getAllPositions());
+		model.addAttribute("position", new Position());
 		
 		
 		return "positions-form";
@@ -48,7 +48,7 @@ public class PositionController {
 	
 	
 	@GetMapping("/update/{id}")
-	public String getPositionssUpdateFormPage(@PathVariable int id, Model model) {
+	public String getPositionsUpdateFormPage(@PathVariable int id, Model model) {
 		
 		model.addAttribute("position", service.getPosition(id));
 		

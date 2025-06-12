@@ -1,5 +1,6 @@
 package rs.edu.cubes.doservice.model;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -16,10 +17,15 @@ public class Position {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
+
 	@OneToMany(mappedBy="position")
 	private Set<Contract> contracts;
 	
-	
+	public Position(){
+
+	}
 	
 	public Position(int id, String name) {
 		super();
@@ -50,9 +56,35 @@ public class Position {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
+
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+
+
+
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
+
+
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+
+
+
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 	
 	
 	

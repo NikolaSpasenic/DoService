@@ -5,11 +5,7 @@ package rs.edu.cubes.doservice.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 import rs.edu.cubes.doservice.model.ServiceType;
@@ -37,9 +33,15 @@ public class TaskController {
 
 
 	@GetMapping
-	public String getTasksPage(Model model) {
-		
-		model.addAttribute("tasks", taskService.getAllTasks());
+	public String getTasksPage(Model model, @RequestParam(value = "status", required = false) String status) {
+		if (status == null)
+			model.addAttribute("tasks", taskService.getAllTasks());
+		else if (status.equalsIgnoreCase("COMPLETED"))
+			model.addAttribute("tasks", taskService.getTasksByStatus(TaskStatus.COMPLETED));
+		else if (status.equalsIgnoreCase("IN_PROGRESS"))
+			model.addAttribute("tasks", taskService.getTasksByStatus(TaskStatus.IN_PROGRESS));
+		else if (status.equalsIgnoreCase("PENDING"))
+			model.addAttribute("tasks", taskService.getTasksByStatus(TaskStatus.PENDING));
 
 		return "tasks";
 	}
