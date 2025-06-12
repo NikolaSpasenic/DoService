@@ -41,6 +41,10 @@ public class TaskService {
 		repository.deleteById(taskId);
 	}
 	
+	public long countTasks() {
+		return repository.count();
+	}
+	
 	
 	
 	
